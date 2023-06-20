@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="130"
+   height="30"
+   viewBox="0 0 34.395832 7.9375002"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     units="px"
+     inkscape:zoom="3.3461162"
+     inkscape:cx="41.988978"
+     inkscape:cy="29.58654"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="36"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.23333px;line-height:1.25;font-family:sans-serif;letter-spacing:0.153458px;fill:#336666;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="7.7660503"
+       y="5.4897447"
+       id="text964"><tspan
+         sodipodi:role="line"
+         id="tspan962"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:4.23333px;font-family:'Geologica Cursive';-inkscape-font-specification:'Geologica Cursive, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#336666;stroke-width:0.264583;fill-opacity:1"
+         x="7.7660503"
+         y="5.4897447">CaloRICH AI</tspan></text>
+    <path
+       style="fill:none;stroke:#336666;stroke-width:0.264583;stroke-opacity:1"
+       id="path35812"
+       sodipodi:type="arc"
+       sodipodi:cx="3.8778951"
+       sodipodi:cy="3.958014"
+       sodipodi:rx="2.6878662"
+       sodipodi:ry="2.6878662"
+       sodipodi:start="5.5850536"
+       sodipodi:end="5.3232542"
+       sodipodi:arc-type="arc"
+       d="M 5.9369201,2.2302869 A 2.6878662,2.6878662 0 0 1 5.7365897,5.8996317 2.6878662,2.6878662 0 0 1 2.0619991,5.9397169 2.6878662,2.6878662 0 0 1 1.7816699,2.2756155 2.6878662,2.6878662 0 0 1 5.4195918,1.7562429"
+       sodipodi:open="true" />
+  </g>
+</svg>

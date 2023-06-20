@@ -11,7 +11,7 @@ $breakpoint-lg: 992px;
 $breakpoint-md: 768px;
 $breakpoint-sm: 576px;
 
-$color-primary: #0072bc;
+$color-primary: #33669f;
 $color-secondary: #d8655e;
 $color-body: #444444;
 
@@ -151,16 +151,24 @@ body {
       }
     }
 
+    .qe-toolbar__inner {
+      > ul {
+        > li.btn__qelogo {
+          filter: invert(100%);
+        }
+      }
+    }
+
+    .admonition.warning {
+      background: #505050;
+    }
+
     .qe-page__content {
       .image-reference img {
         filter: invert(100%) hue-rotate(-180deg) !important;
         -ms-filter: invert(100%) !important;
         -webkit-filter: invert(100%) hue-rotate(-180deg) !important;
       }
-    }
-
-    .reference.external, .reference.internal {
-      font-weight: 800;
     }
   }
 }
@@ -247,8 +255,7 @@ li {
 }
 
 a {
-  color: #0072bc;
-  text-decoration: none;
+  color: $color-primary;
   transition: all 0.15s linear;
   overflow-wrap: break-word;
 }
@@ -430,9 +437,8 @@ tt {
             display: block;
             overflow: hidden;
             height: 30px;
-            width: 105px;
-            background: url(https://assets.quantecon.org/img/menubar/qemb-logo.png) no-repeat left top;
-            background-size: 105px 30px;
+            width: 130px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='30' viewBox='0 0 34.396 7.938'%3E%3Cpath fill='%23366' d='M9.506 5.553q-.46 0-.804-.19-.343-.193-.534-.54-.188-.35-.188-.815 0-.336.112-.618.112-.284.318-.491.205-.207.484-.322.282-.114.614-.114.328 0 .574.082.245.08.423.231l-.212.326q-.144-.129-.334-.192-.19-.064-.421-.064-.26 0-.472.08-.212.08-.362.233-.148.15-.229.364-.08.214-.08.48 0 .37.142.63.143.26.406.397.262.136.62.136.23 0 .442-.068.214-.07.4-.226l.187.338q-.218.172-.49.259-.268.084-.596.084zm2.584 0q-.314 0-.555-.146-.242-.146-.377-.394-.135-.25-.135-.56 0-.233.078-.434.078-.201.22-.35.142-.15.337-.232.196-.085.431-.085.314 0 .521.131.207.131.324.335l-.057.084v-.487h.355V5.49h-.355v-.487l.057.082q-.117.204-.324.337-.207.131-.52.131zm.042-.351q.207 0 .368-.091.16-.093.252-.26.093-.17.093-.398 0-.231-.093-.398-.091-.17-.252-.26-.16-.092-.368-.092t-.369.091q-.16.091-.254.26-.093.168-.093.399 0 .228.093.398.093.167.254.26.161.09.369.09zm1.927.288V2.442h.39V5.49zm2.145.063q-.322 0-.573-.15-.252-.15-.396-.4-.144-.25-.144-.55 0-.223.082-.422.083-.199.233-.351.15-.155.354-.241.203-.087.444-.087.324 0 .576.15.252.15.396.4.144.25.144.55 0 .223-.083.422-.082.199-.233.351-.15.153-.353.241-.203.087-.447.087zm0-.351q.21 0 .37-.091.164-.093.257-.26.093-.17.093-.398 0-.231-.093-.398-.091-.17-.254-.26-.163-.092-.373-.092t-.372.091q-.161.091-.254.26-.091.168-.091.399 0 .228.09.398.094.167.257.26.163.09.37.09zm1.819.288V2.526h1.093q.3 0 .518.106.22.106.339.303.12.195.12.46 0 .221-.097.393-.097.17-.275.277-.178.108-.415.144l.925 1.28h-.487l-.872-1.229h-.45v1.23zm.398-1.57h.618q.31 0 .48-.134.174-.134.174-.377 0-.25-.152-.394-.152-.144-.461-.144h-.659zm2.537 1.57V2.526h.398V5.49zm2.692.063q-.46 0-.805-.19-.343-.193-.533-.54-.189-.35-.189-.815 0-.336.113-.618.112-.284.317-.491.205-.207.485-.322.281-.114.614-.114.328 0 .573.082.246.08.424.231l-.212.326q-.144-.129-.335-.192-.19-.064-.42-.064-.261 0-.473.08-.211.08-.362.233-.148.15-.228.364-.08.214-.08.48 0 .37.141.63.144.26.406.397.263.136.62.136.231 0 .443-.068.214-.07.4-.226l.186.338q-.218.172-.489.259-.268.084-.597.084zm1.762-.063V2.526h.398v1.205h1.524V2.526h.397V5.49h-.397V4.097H25.81V5.49zm4.14 0 1.166-2.964h.413l1.202 2.964h-.449l-.294-.743h-1.32l-.282.743Zm.83-1.09h1.092l-.56-1.38zm2.558 1.09V2.526h.397V5.49zM3.479 1.166a2.821 2.821 0 1 0 2.56.979l-.203.17a2.556 2.556 0 1 1-.492-.45l.152-.217a2.818 2.818 0 0 0-2.017-.482Z'/%3E%3C/svg%3E");            background-size: 130px 30px;
           }
         }
 
@@ -518,10 +524,6 @@ tt {
         img {
           max-width: 150px;
         }
-      }
-      .powered {
-        //text-align: center;
-        font-size: 0.8rem;
       }
     }
 
@@ -620,7 +622,7 @@ tt {
   }
 
   &__footer {
-    border-top: 5px solid #0072bc;
+    border-top: 5px solid $color-primary;
     margin: 2rem 0;
     padding: 1rem 0 0 0;
     font-size: 0.8rem;
@@ -630,7 +632,7 @@ tt {
 
 .main-index {
   h1 {
-    border-bottom: 5px solid #0072bc;
+    border-bottom: 5px solid $color-primary;
     margin: 0 0 2rem 0;
     padding: 0 0 1rem 0;
     font-weight: 700;
@@ -702,6 +704,7 @@ tt {
         a {
           color: $color-body;
           opacity: 0.8;
+          text-decoration: none;
 
           &.active {
             color: $color-primary;
@@ -830,7 +833,7 @@ tt {
       margin: 0 -1rem;
       padding: 0.25rem 2rem;
       font-weight: 700;
-      background-color: #0072bc26;
+      background-color: rgba($color-primary, 0.15);
     }
   }
 
@@ -974,7 +977,7 @@ tt {
   }
 
   a .math {
-    color: #0072bc;
+    color: $color-primary;
   }
 
   div.math {
@@ -986,7 +989,7 @@ tt {
   }
 
   a .MathJax {
-    color: #0072bc;
+    color: $color-primary;
   }
 
   .figure {
@@ -1121,7 +1124,7 @@ div.cell {
   }
   p {
     margin: 0rem;
-    color: #0072bc;
+    color: $color-primary;
     &:hover {
       text-decoration: underline;
       cursor: pointer;
@@ -1501,6 +1504,10 @@ dl.module, dl.class, dl.exception, dl.function, dl.decorator, dl.data, dl.method
     font-family: 'PT Serif', serif;
     font-size: 1.2rem;
   }
+}
+
+.toctree-checkbox, .toctree-toggle {
+  display: none;
 }
 
 // div[class^='collapse'] .highlight {

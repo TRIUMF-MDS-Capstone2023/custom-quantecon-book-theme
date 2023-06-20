@@ -48,14 +48,12 @@
 <!-- Normal Meta Tags -->
 <meta name="author" context="{{ author | e }}" />
 <meta name="keywords" content="{{ theme_keywords | e }}" />
-<meta name="description" content={{ theme_description | e }} />
+<meta name="description" content="{{ theme_description | e }}" />
 
 <!-- Twitter tags -->
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@{{ theme_twitter | e }}" />
 <meta name="twitter:title" content="{% if pagetitle %}{{ pagetitle | e }}{% else %}{{ title | e }}{% endif %}"/>
 <meta name="twitter:description" content="{{ theme_description | e }}">
-<meta name="twitter:creator" content="@{{ theme_twitter | e }}">
 <meta name="twitter:image" content="{{ theme_twitter_logo_url | e }}">
 
 <!-- Opengraph tags -->
@@ -65,6 +63,10 @@
 <meta property="og:image" content="{{ theme_og_logo_url | e }}" />
 <meta property="og:description" content="{{ theme_description | e }}" />
 <meta property="og:site_name" content="{{ docstitle | e }}" />
+
+<link rel="icon" href="{{ pathto('_static/favicon.svg', 1) }}" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="{{ pathto('_static/apple-touch-icon.png', 1) }}" />
+
 <meta name="theme-color" content="#ffffff" />
 {% endblock %}
 
@@ -112,9 +114,6 @@
                                     {% endif %}
                                 {% endif %}
                             </p>
-
-                            <p class="powered">Powered by <a href="https://jupyterbook.org/">Jupyter Book</a></p>
-
                         </nav>
 
                         <div class="qe-page__toc-footer">
@@ -165,9 +164,13 @@
 
                 <footer class="qe-page__footer">
 
-                    <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
+                    <p>Copyright &copy; 2023 Crystal Geng, Daniel Merigo, Kelvin Wong, Peng Zhang</p>
 
-                    <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+                    <p><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="https://licensebuttons.net/l/by-nc-nd/4.0/80x15.png"></a></p>
+
+                    <p>Creative Commons License &ndash; This work is licensed under the <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International</a> license.</p>
+
+                    <p>Powered by <a href="https://jupyterbook.org/" target="_blank" rel="noreferer nofollow">Jupyter Book</a>. Theme forked from <a href="https://github.com/QuantEcon/quantecon-book-theme" target="_blank" rel="noreferer nofollow">quantecon-book-theme</a>.</p>
 
                 </footer> <!-- .page__footer -->
 
@@ -224,9 +227,6 @@
                     {%- if notebook_path %}
                     <li data-tippy-content="Download Notebook"><a href="{{ notebook_path }}" download><i data-feather="download-cloud"></i></a></li>
                     {%- endif %}
-                    {%- if theme_nb_repository_url %}
-                    <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
-                    {%- endif %}
                     {%- if pdf_book_path %}
                         <li class="download-pdf" id="downloadButton"><i data-feather="file"></i></li>
                     {%- else %}
@@ -247,114 +247,6 @@
                     <a href="{{ pdf_book_path }}" download><p>Book (PDF)</p></a>
                 </li>
             </ul>
-        </div>
-        <div id="settingsModal" style="display: none;">
-            <p class="modal-title"> Notebook Launcher </p>
-            <div class="modal-desc">
-            <p>
-                Choose public or private cloud service for "Launch" button.
-            </p>
-            </div>
-            <p class="modal-subtitle">Select a server</p>
-            <ul class="modal-servers">
-            <li class="active launcher-public">
-                <span class="label">Public</span>
-                <select id="launcher-public-input">
-                {% for item in launch_buttons%}
-                    <option value="{{item.url}}">{{item.name}}</option>
-                {% endfor %}
-                </select>
-                <i class="fas fa-check-circle"></i>
-            </li>
-            <li class="launcher-private">
-                <span class="label">Private</span>
-                <input type="text" id="launcher-private-input" data-repourl="{{theme_nb_repository_url}}" data-urlpath="{{jupyterhub_urlpath}}" data-branch={{repo_branch}}>
-                <i class="fas fa-check-circle"></i>
-            </li>
-            </ul>
-            <p class="launch"><a href="{{default_server}}" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
-            <script>
-                // QuantEcon Notebook Launcher
-                const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
-                // Highlight the server type if previous selection exists
-                if (typeof localStorage.launcherType !== 'undefined') {
-                  for (var i = 0; i < launcherTypeElements.length; i++) {
-                    launcherTypeElements[i].classList.remove('active');
-                    if ( launcherTypeElements[i].classList.contains(localStorage.launcherType) ) {
-                      launcherTypeElements[i].classList.add('active');
-                    }
-                  }
-                }
-                // Highlight server type on click and set local storage value
-                for (var i = 0; i < launcherTypeElements.length; i++) {
-                  launcherTypeElements[i].addEventListener('click', function() {
-                    for (var j = 0; j < launcherTypeElements.length; j++) {
-                      launcherTypeElements[j].classList.remove('active');
-                    }
-                    this.classList.add('active');
-                    if ( this.classList.contains('launcher-private') ) {
-                      localStorage.launcherType = 'launcher-private';
-                    } else if ( this.classList.contains('launcher-public') ) {
-                      localStorage.launcherType = 'launcher-public';
-                    }
-                    setLaunchServer();
-                  })
-                }
-                const launcherPublic = document.getElementById('launcher-public-input');
-                const launcherPrivate = document.getElementById('launcher-private-input');
-                const pageName = "{{pagename}}";
-                const repoURL = "{{theme_nb_repository_url}}";
-                const urlPath = "{{jupyterhub_urlpath}}";
-                const branch = "{{repo_branch}}"
-                const launchNotebookLink = document.getElementById('advancedLaunchButton');
-
-                // Highlight public server option if previous selection exists
-                if (typeof localStorage.launcherPublic !== 'undefined') {
-                  launcherPublic.value = localStorage.launcherPublic;
-                }
-                // Update local storage upon public server selection
-                launcherPublic.addEventListener('change', (event) => {
-                  setLaunchServer();
-                });
-                // Populate private server input if previous entry exists
-                if (typeof localStorage.launcherPrivate !== 'undefined') {
-                  launcherPrivate.value = localStorage.launcherPrivate;
-                }
-                // Update local storage when a private server is entered
-                launcherPrivate.addEventListener('input', (event) => {
-                  setLaunchServer();
-                });
-
-                // Function to update the "Launch Notebook" link href
-                function setLaunchServer() {
-                  launchNotebookLink.removeAttribute("style")
-                  if ( localStorage.launcherType == 'launcher-private' ) {
-                    let repoPrefix = "/jupyter/hub/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
-                    launcherPrivateValue = launcherPrivate.value
-                    if (!launcherPrivateValue) {
-                        launchNotebookLink.removeAttribute("href")
-                        launchNotebookLink.style.background = "grey"
-                        return
-                    }
-                    localStorage.launcherPrivate = launcherPrivateValue;
-                    privateServer = localStorage.launcherPrivate.replace(/\/$/, "")
-                    if (!privateServer.includes("http")) {
-                        privateServer = "http://" + privateServer
-                    }
-                    launchNotebookLinkURL = privateServer + repoPrefix;
-                  } else if ( localStorage.launcherType == 'launcher-public' ) {
-                    launcherPublicValue = launcherPublic.options[launcherPublic.selectedIndex].value;
-                    localStorage.launcherPublic = launcherPublicValue;
-                    launchNotebookLinkURL = localStorage.launcherPublic;
-                  }
-                  if (launchNotebookLinkURL) launchNotebookLink.href = launchNotebookLinkURL;
-                }
-                // Check if user has previously selected a server
-                if ( (typeof localStorage.launcherPrivate !== 'undefined') || (typeof localStorage.launcherPublic !== 'undefined') ) {
-                  setLaunchServer();
-                }
-                </script>
-
         </div>
 
     </div> <!-- .wrapper-->
